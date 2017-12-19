@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+{#- 言語ごとページを切り替えるスクリプト #}
+<script>
+  window.onload = function() {
+    let filter = document.getElementById('lang');
+    filter.addEventListener('change', changeLanguage);
+  }
+
+  function changeLanguage() {
+    var num = document.getElementById('lang').selectedIndex;
+    var val = document.getElementById('lang').options[num].value;
+    location.href = "./" + val;
+  }
+</script>
+<div class="language-base">
+  <div class="language-base__icon">
+    <i class="fas fa-language"></i>
+  </div>
+</div>
+<div class="language-select">
+  <select name="lang" id="lang" onchange="changeLanguage();">
+    <option selected disabled></option>
+    <option value="">日本語</option>
+    {%- for i in info.language_list if i.code != 'ja' %}
+    <option value="{{i.code}}">{{i.language}}</option>
+    {%- endfor %}
+  </select>
+</div>
+<section class="contents">
+  {%- for sentence in contents.get_started %}
+  <p>{{sentence|safe}}</p>
+  {%- endfor %}
+</section>
+<section class="form contents">
+  {%- block result %}{% endblock result %}
+  {#- Preview an uploaded picture #}
+  <script>
+    var documentform = document.querySelector('form');
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelector('input[type="file"]').addEventListener('change', function(e) {
+        var file = e.target.files[0], reader = new FileReader(), documentpreview = document.querySelector('.preview'), t = this;
+
+        if (file.type.indexOf('image') < 0) {
+          return false;
+        }
+
+        reader.onload = (function(file) {
+          return function(e) {
+            while (documentpreview.firstChild) {
+              documentpreview.removeChild(documentpreview.firstChild);
+            }
+
+            var img = document.createElement('img');
+            img.setAttribute('class', 'preview__img');
+            img.setAttribute('src', e.target.result);
+            documentpreview.appendChild(img);
+          }
+        })(file);
+        reader.readAsDataURL(file);
+      });
+    });
+  </script>
+  <form action="/post" method="post" enctype="multipart/form-data">
+    <p><input type="file" name="img"></p>
+    <div class="preview"></div>
+    <p><input type="text" name="caption" placeholder="{{contents.form.comment|default('Comment', true)}}"></p>
+    <p>{{contents.form.description|default('Sign in with Instagram', true)}}</p>
+    <p><input class="form__textbox" type="text" name="username" placeholder="{{contents.form.username|default('Username', true)}}" /></p>
+    <p><input class="form__textbox" type="password" name="password" placeholder="{{contents.form.password|default('Password', true)}}" /></p>
+    <input class="form__submit" type="submit" value="{{contents.form.button|default('Upload', true)}}" />
+  </form>
+</section>
+<div class="attention contents">
+</div>
+<div class="ad-resp">
+  <!-- TODO: ads -->
+
+</div>
+<div class="ad-336x2">
+  <div class="ad-336x2__left">
+
+  </div>
+  <div class="ad-336x2__right">
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{
+  "short_name": "Postpic for Instagram",
+  "name": "Postpic for Instagram",
+  "icons": [
+    {
+      "src": "circle-icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/?utm_source=launcher",
+  "background_color": "#f7f7f7",
+  "theme_color": "#4169e1",
+  "display": "standalone"
+}

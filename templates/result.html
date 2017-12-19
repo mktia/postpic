@@ -1,0 +1,10 @@
+{% extends "index.html" %}
+{% block result %}
+  <script>
+    {%- if lang == 'ja' %}
+    alert('投稿しました！')
+    {%- else %}
+    alert('Posted!')
+    {%- endif %}
+  </script>
+{% endblock result %}

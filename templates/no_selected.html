@@ -1,0 +1,8 @@
+{% extends "index.html" %}
+{% block result %}
+{%- if lang == 'ja' %}
+<p>ファイルが選択されていません。</p>
+{%- else %}
+<p>No selected file.</p>
+{%- endif %}
+{% endblock result %}

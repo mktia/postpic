@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {%- block head %}
+  <!--[if IE]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+  <meta charset="utf-8" />
+  <!-- TODO: Google Analytics -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="{{contents.keyword}}" />
+  <meta name="description" content="{{contents.description}}" />
+  <title>{{info.name}}</title>
+  <meta name="theme-color" content="#4169e1">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:description" content="{{contents.description}}">
+  <meta name="twitter:title" content="{{info.name}}">
+  <meta name="twitter:url" content="{{info.url}}{% if lang != 'ja' %}/{{lang}}{% endif %}">
+  <meta name="twitter:image" content="{{info.url}}/static/postpic-ogp.png">
+  <meta name="twitter:domain" content="{{info.url}}{% if lang != 'ja' %}/{{lang}}{% endif %}">
+  <meta name="twitter:creator" content="@_mktia">
+  <meta name="twitter:site" content="@_mktia">
+  <!-- TODO: facebook app id -->
+  <meta property="fb:app_id" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="{{contents.description}}">
+  <meta property="og:title" content="{{info.name}}">
+  <meta property="og:url" content="{{info.url}}{% if lang != 'ja' %}/{{lang}}{% endif %}">
+  <meta property="og:image" content="{{info.url}}/static/postpic-ogp.png">
+  <meta property="og:site_name" content="{{info.name}}">
+  <meta property="og:locale" content="ja_JP">
+  {#- alternate の content には ISO 639-1 言語コード及び ISO 3166-1 国コードを用いる #}
+  {%- for i in info.language_list if i.locale != 'ja_Ja' %}
+  <meta property="og:locale:alternate" content="{{i.locale}}">
+  {%- endfor %}
+  {#- 他に対応している言語のページを載せる #}
+  {%- for i in info.language_list if i.code != lang %}
+  <link rel="alternate" hreflang="{{i.code}}" href="{{info.url}}/{{i.code}}">
+  {%- endfor %}
+  <link rel="apple-touch-icon" sizes="192x192" href="../static/circle-icon.png">
+  <link rel="icon" sizes="192x192" href="../static/icon.png" />
+  <link rel="stylesheet" href="../static/style.css" />
+  <link rel="manifest" href="../static/manifest.json">
+  <link href="https://fonts.googleapis.com/css?family=Dynalight" rel="stylesheet">
+  {%- endblock %}
+  <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+</head>
+
+<body>
+  <!-- TODO: page ads -->
+
+  <div class="header">
+    <header>
+      <div class="header__contents">
+        <img class="header__icon" src="../static/icon.png" />
+        <h1 class="header__title">
+          <a class="header__link" href="{{info.url}}">{{info.name}}</a>
+        </h1>
+      </div>
+    </header>
+  </div>
+  {% block content %}{% endblock %}
+  {#- Facebook SDK #}
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/{% for i in info.language_list if i.code == lang %}{{i.locale}}{% endfor %}/sdk.js#xfbml=1&version=v2.11';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  {#- Twitter #}
+  <script>window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+
+    return t;
+  }(document, "script", "twitter-wjs"));</script>
+  {#- each sns button #}
+  <div class="contents">
+    <div class="sns">
+      <p class="sns__p">{{contents.share}}</p>
+      <div class="sns__button sns__button--padding-top">
+        <div class="fb-like"
+          data-href="https://fb.me/enicy.official"
+          data-layout="button_count"
+          data-action="like"
+          data-size="small"
+          data-show-faces="true"
+          data-share="true">
+        </div>
+      </div>
+      {#- <div class="sns__button sns__button--padding-top">
+        <a href=”fb-messenger://share/?link= https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fsharing%2Freference%2Fsend-dialog&app_id=123456789”>Messenger</a>
+      </div> #}
+      <div class="sns__button sns__button--padding-top">
+        <a class="twitter-share-button"
+          href="https://twitter.com/intent/tweet?text={{contents.description}}"
+          data-lang="{{lang}}">Tweet</a>
+      </div>
+      {%- if lang == 'ja' or lang == 'id' %}
+      <div class="sns__button sns__button--padding-top">
+        <div class="line-it-button"
+          data-lang="{{lang}}"
+          data-type="share-a"
+          data-url="{{info.url}}{% if lang != 'ja' %}/{{lang}}{% endif %}"
+          style="display: none;">
+        </div>
+        <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+      </div>
+      {%- endif %}
+    </div>
+  </div>
+  <div class="footer contents">
+    <footer>
+      <p>&copy; 2017 <a href="https://www.mktia.com">mktia</a>.</p>
+    </footer>
+  </div>
+</body>
+
+</html>

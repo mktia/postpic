@@ -1,0 +1,26 @@
+{
+  "language": "English",
+  "keywords": "Instagram, phpto, upload",
+  "description": "This is the website for instagrammer to post photos from computer.",
+  "short_description": "The website to post photos to instagram",
+  "get_started": [
+    "You can post a photo with a comment.",
+    "You cannot edit a photo in this website.",
+    "Uploading a video is not supported."
+  ],
+  "form": {
+    "comment": "Comment",
+    "description": "Input your username and password",
+    "username": "Username",
+    "password": "Password",
+    "button": "Upload"
+  },
+  "attention": [
+    "Use your username and password to upload.",
+    "To protect your account, this website doesn't save anything."
+  ],
+  "login_failed": [
+    "You failed to login. Please retry."
+  ],
+  "share": "Let's share this app!"
+}
