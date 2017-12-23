@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 import os
-from flask import Flask, render_template, request, make_response, Response
+from flask import Flask, render_template, request, make_response, Response, redirect, url_for
 from InstagramAPI import InstagramAPI
 from werkzeug.utils import secure_filename
 
@@ -58,12 +58,12 @@ def post_img():
 
     if not api.login():
         print('Failed to login.')
-        return return_html('login_error.html', lang=lang)
+        return redirect(url_for('error', r='login'))
 
     img = request.files['img']
     if img.filename == '':
         print('No selected file.')
-        return return_html('no_selected.html', lang=lang)
+        return redirect(url_for('error', r='no_selected'))
 
     filename = secure_filename(img.filename)
 
@@ -76,6 +76,21 @@ def post_img():
     api.uploadPhoto(path, caption=request.form['caption'])
 
     return return_html('result.html', lang=lang)
+
+@app.route('/error')
+def error():
+    # Get the language code from cookie
+    lang = request.cookies.get('language', None)
+
+    # Why this application occurs an error
+    reason = request.args.get('r')
+
+    if reason == 'login':
+        return return_html('login_error.html', lang=lang)
+    elif reason == 'no_selected':
+        return return_html('no_selected.html', lang=lang)
+    else:
+        return redirect(url_for('/'))
 
 if __name__ == '__main__':
     app.run()
