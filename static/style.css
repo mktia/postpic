@@ -111,7 +111,22 @@ body {
 @media screen and (min-width: 320px) {}
 
 /* Galaxy S5 */
-@media screen and (min-width: 360px) {}
+@media screen and (min-width: 360px) {
+  .language-base,
+  .language-select {
+    left: calc(100% - 36px);
+    top: 10px;
+    width: 30px;
+  }
+
+  .language-base__icon {
+    font-size: 24px;
+  }
+
+  .language-select select {
+    width: 30px;
+  }
+}
 
 /* iPhone */
 @media screen and (min-width: 375px) {}
@@ -127,11 +142,54 @@ body {
   .form__textbox {
     width: 320px;
   }
+
+  .header__icon {
+    margin-right: 16px;
+    margin-top: 5px;
+  }
+
+  .header__title {
+    font-size: 36px;
+  }
+
+  .language-base,
+  .language-select {
+    left: calc(100% - 48px);
+    top: 6px;
+    width: 40px;
+  }
+
+  .language-base__icon {
+    font-size: 32px;
+  }
+
+  .language-select select {
+    width: 40px;
+  }
 }
 
 /* iPad Pro */
 @media screen and (min-width: 1024px) {
   .contents {
     width: 1024px;
+  }
+
+  .header__contents {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1024px;
+  }
+
+  .language-base,
+  .language-select {
+    left: calc((100% - 1024px)/2 + 984px);
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  body {
+    background-color: #111;
+    background-repeat-x: no-repeat;
+    background-position: 50% top;
   }
 }
