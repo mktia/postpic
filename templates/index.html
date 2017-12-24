@@ -71,7 +71,7 @@
   <form action="/post" method="post" enctype="multipart/form-data">
     <p><input type="file" name="img"></p>
     <div class="preview"></div>
-    <textarea class="form__textbox" name="caption" rows="3" placeholder="{{contents.form.comment|default('Comment', true)}}"></textarea>
+    <textarea class="form__textarea" name="caption" rows="3" placeholder="{{contents.form.comment|default('Comment', true)}}"></textarea>
     <p>{{contents.form.description|default('Sign in with Instagram', true)}}</p>
     <p><input class="form__textbox" type="text" name="username" placeholder="{{contents.form.username|default('Username', true)}}" /></p>
     <p><input class="form__textbox" type="password" name="password" placeholder="{{contents.form.password|default('Password', true)}}" /></p>
