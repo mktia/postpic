@@ -1,4 +1,5 @@
 body {
+  background-attachment: fixed;
   background-image: url("sky.jpg");
   color: #444;
   font-family: 'Yu Gothic', 'Hiragino Kaku Gothic ProN', 'HiraKakuProN-W3', 'Meiryo', sans-serif;
@@ -21,7 +22,6 @@ input[type="submit"] {
 
 .footer {
   clear: both;
-  padding-top: 32px;
 }
 
 .footer a {
@@ -82,6 +82,10 @@ input[type="submit"] {
 
 .preview__img {
   max-width: 100%;
+}
+
+.sns {
+  padding-bottom: 32px;
 }
 
 .sns__button {
