@@ -28,14 +28,20 @@
   </select>
 </div>
 <section class="contents">
-  <h2>はじめに</h2>
+  <h2>{{contents.section_title.get_started}}</h2>
   {%- for sentence in contents.get_started %}
   <p>{{sentence|safe}}</p>
   {%- endfor %}
 </section>
 <section class="contents">
-  <h2>注意</h2>
+  <h2>{{contents.section_title.attention}}</h2>
   {%- for sentence in contents.attention %}
+  <p>{{sentence|safe}}</p>
+  {%- endfor %}
+</section>
+<section class="contents">
+  <h2>{{contents.section_title.disclaimer}}</h2>
+  {%- for sentence in contents.disclaimer %}
   <p>{{sentence|safe}}</p>
   {%- endfor %}
 </section>
@@ -79,15 +85,39 @@
   </form>
 </section>
 <div class="ad-resp">
-  <!-- TODO: ads -->
-
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- postpic-resp -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-3718490269566520"
+       data-ad-slot="2184722595"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
 </div>
 <div class="ad-336x2">
   <div class="ad-336x2__left">
-
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- postpic-336-l -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:336px;height:280px"
+         data-ad-client="ca-pub-3718490269566520"
+         data-ad-slot="1801579216"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
   <div class="ad-336x2__right">
-
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- postpic-336-r -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:336px;height:280px"
+         data-ad-client="ca-pub-3718490269566520"
+         data-ad-slot="2164541295"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
 </div>
 {% endblock %}
