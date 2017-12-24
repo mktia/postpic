@@ -125,7 +125,11 @@
   </div>
   <div class="footer contents">
     <footer>
-      <p>&copy; 2017 <a href="https://www.mktia.com">mktia</a>.</p>
+      <script>
+        var date = new Date();
+        var year = date.getFullYear();
+        document.write('<p>&copy; ' + year + ' <a href="https://www.mktia.com">mktia</a>.</p>')
+      </script>
     </footer>
   </div>
 </body>
