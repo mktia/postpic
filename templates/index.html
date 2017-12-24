@@ -71,11 +71,11 @@
   <form action="/post" method="post" enctype="multipart/form-data">
     <p><input type="file" name="img"></p>
     <div class="preview"></div>
-    <p><input type="text" name="caption" placeholder="{{contents.form.comment|default('Comment', true)}}"></p>
+    <textarea name="caption" rows="3" cols="40" placeholder="{{contents.form.comment|default('Comment', true)}}"></textarea>
     <p>{{contents.form.description|default('Sign in with Instagram', true)}}</p>
     <p><input class="form__textbox" type="text" name="username" placeholder="{{contents.form.username|default('Username', true)}}" /></p>
     <p><input class="form__textbox" type="password" name="password" placeholder="{{contents.form.password|default('Password', true)}}" /></p>
-    <input class="form__submit" type="submit" value="{{contents.form.button|default('Upload', true)}}" />
+    <p><input class="form__submit" type="submit" value="{{contents.form.button|default('Upload', true)}}" /></p>
   </form>
 </section>
 <div class="ad-resp">
