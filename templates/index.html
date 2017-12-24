@@ -28,7 +28,14 @@
   </select>
 </div>
 <section class="contents">
+  <h2>はじめに</h2>
   {%- for sentence in contents.get_started %}
+  <p>{{sentence|safe}}</p>
+  {%- endfor %}
+</section>
+<section class="contents">
+  <h2>注意</h2>
+  {%- for sentence in contents.attention %}
   <p>{{sentence|safe}}</p>
   {%- endfor %}
 </section>
@@ -71,8 +78,6 @@
     <input class="form__submit" type="submit" value="{{contents.form.button|default('Upload', true)}}" />
   </form>
 </section>
-<div class="attention contents">
-</div>
 <div class="ad-resp">
   <!-- TODO: ads -->
 
